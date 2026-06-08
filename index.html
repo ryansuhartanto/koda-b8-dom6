@@ -7,7 +7,9 @@
   <title>Document</title>
 
   <style>
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -50,6 +52,43 @@
       border-color: rgb(0 0 0 / .9);
       border-block-start-color: rgb(0 0 0 / .1);
 
+      &::before {
+        content: '';
+        display: grid;
+        place-content: center;
+
+        font-size: 1.25rem;
+        font-weight: 700;
+
+        position: absolute;
+        inset: 0;
+        inset-block-start: 100%;
+        inset-inline: 25%;
+
+        transition: inset .2s ease;
+
+        border-end-start-radius: 4.5rem;
+        border-end-end-radius: 4.5rem;
+
+        background: var(--content-color, rgb(255 0 0 / .1));
+      }
+
+      &.tea::before {
+        content: 'Tea';
+        --content-color: rgba(147, 182, 91, 0.5);
+        
+        inset-block-start: 10%;
+        inset-inline: 0;
+      }
+
+      &.coffee::before {
+        content: 'Coffee';
+        --content-color: rgba(147, 91, 91, 0.99);
+        
+        inset-block-start: 20%;
+        inset-inline: 0;
+      }
+
       &::after {
         content: '';
 
@@ -68,6 +107,12 @@
         border-style: solid;
         border-color: rgb(0 0 0 / .9);
       }
+
+      transition: transform .2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      &:hover {
+        transform: scale(1.25) rotate(-3deg);
+      }
     }
   </style>
 </head>
@@ -81,6 +126,9 @@
     const glass1 = document.getElementById('glass-1');
     const glass2 = document.getElementById('glass-2');
     const glass3 = document.getElementById('glass-3');
+
+    glass1.classList.add('coffee');
+    glass2.classList.add('tea');
   </script>
 </body>
 
