@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+
+      font-size: inherit;
+      color: inherit;
+      background: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+
+      width: 100vw;
+      height: 100vh;
+
+      font-family: sans-serif;
+
+      @media (width < 768px) {
+        flex-direction: column;
+      }
+    }
+
+    div {
+      width: 12rem;
+      height: 12rem;
+
+      border-radius: .5rem;
+      border-end-start-radius: 5rem;
+      border-end-end-radius: 5rem;
+
+      border-width: 2px;
+      border-block-start-width: 1px;
+      border-block-end-width: 8px;
+      border-style: solid;
+      border-color: rgb(0 0 0 / .9);
+      border-block-start-color: rgb(0 0 0 / .1);
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
+
+</html>
