@@ -21,19 +21,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: 4rem;
 
       width: 100vw;
       height: 100vh;
 
       font-family: sans-serif;
 
-      @media (width < 768px) {
+      @media (width < 64rem) {
         flex-direction: column;
       }
     }
 
     div {
+      position: relative;
+
       width: 12rem;
       height: 12rem;
 
@@ -47,14 +49,39 @@
       border-style: solid;
       border-color: rgb(0 0 0 / .9);
       border-block-start-color: rgb(0 0 0 / .1);
+
+      &::after {
+        content: '';
+
+        position: absolute;
+        left: 100%;
+        top: 5%;
+
+        width: 3rem;
+        height: 6rem;
+
+        border-start-end-radius: 2rem;
+        border-end-end-radius: 3rem;
+        border-width: 12px;
+        border-inline-start-width: 0;
+        border-inline-end-width: 6px;
+        border-style: solid;
+        border-color: rgb(0 0 0 / .9);
+      }
     }
   </style>
 </head>
 
 <body>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div id="glass-1"></div>
+  <div id="glass-2"></div>
+  <div id="glass-3"></div>
+
+  <script>
+    const glass1 = document.getElementById('glass-1');
+    const glass2 = document.getElementById('glass-2');
+    const glass3 = document.getElementById('glass-3');
+  </script>
 </body>
 
 </html>
