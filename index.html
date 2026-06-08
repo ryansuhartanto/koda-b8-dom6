@@ -76,7 +76,7 @@
       &.tea::before {
         content: 'Tea';
         --content-color: rgba(147, 182, 91, 0.5);
-        
+
         inset-block-start: 10%;
         inset-inline: 0;
       }
@@ -84,7 +84,7 @@
       &.coffee::before {
         content: 'Coffee';
         --content-color: rgba(147, 91, 91, 0.99);
-        
+
         inset-block-start: 20%;
         inset-inline: 0;
       }
@@ -113,14 +113,18 @@
       &:hover {
         transform: scale(1.25) rotate(-3deg);
       }
+
+      &[aria-selected="true"] {
+        transform: scale(1.2) rotate(2deg);
+      }
     }
   </style>
 </head>
 
 <body>
-  <div id="glass-1"></div>
-  <div id="glass-2"></div>
-  <div id="glass-3"></div>
+  <div id="glass-1" aria-selected="false"></div>
+  <div id="glass-2" aria-selected="false"></div>
+  <div id="glass-3" aria-selected="false"></div>
 
   <script>
     const glass1 = document.getElementById('glass-1');
@@ -129,6 +133,34 @@
 
     glass1.classList.add('coffee');
     glass2.classList.add('tea');
+
+    let selectedGlass = null;
+
+    [glass1, glass2, glass3].forEach(glass => {
+      glass.addEventListener('click', () => {
+        if (selectedGlass === glass) {
+          selectedGlass.setAttribute('aria-selected', 'false');
+          selectedGlass = null;
+          return;
+        } else if (!selectedGlass) {
+          glass.setAttribute('aria-selected', 'true');
+          selectedGlass = glass;
+          return;
+        }
+
+        function swapClasses(a, b) {
+          const temp = a.classList.value;
+          a.classList.value = b.classList.value;
+          b.classList.value = temp;
+        }
+
+        if (glass.classList.length === 0 || selectedGlass.classList.length === 0) {
+          swapClasses(glass, selectedGlass);
+          selectedGlass.setAttribute('aria-selected', 'false');
+          selectedGlass = null;
+        }
+      });
+    });
   </script>
 </body>
 
