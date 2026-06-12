@@ -118,7 +118,7 @@
         transform: scale(1.25) rotate(-3deg);
       }
 
-      &[aria-selected="true"] {
+      &.selected {
         transform: scale(1.15) rotate(-5deg);
       }
     }
@@ -126,9 +126,9 @@
 </head>
 
 <body>
-  <div aria-selected="false"></div>
-  <div aria-selected="false"></div>
-  <div aria-selected="false"></div>
+  <div></div>
+  <div></div>
+  <div></div>
 
   <script>
     const glasses = document.body.querySelectorAll("div");
@@ -147,18 +147,18 @@
     glasses.forEach(glass => {
       glass.addEventListener('click', () => {
         if (selectedGlass === glass) {
-          selectedGlass.setAttribute('aria-selected', 'false');
+          selectedGlass.classList.toggle("selected", false);
           selectedGlass = null;
           return;
         } else if (!selectedGlass) {
-          glass.setAttribute('aria-selected', 'true');
+          glass.classList.toggle("selected", true);
           selectedGlass = glass;
           return;
         }
 
         if (glass.classList.length === 0 || selectedGlass.classList.length === 0) {
+          selectedGlass.classList.toggle("selected", false);
           swapClasses(glass, selectedGlass);
-          selectedGlass.setAttribute('aria-selected', 'false');
           selectedGlass = null;
         }
       });
