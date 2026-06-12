@@ -126,21 +126,25 @@
 </head>
 
 <body>
-  <div id="glass-1" aria-selected="false"></div>
-  <div id="glass-2" aria-selected="false"></div>
-  <div id="glass-3" aria-selected="false"></div>
+  <div aria-selected="false"></div>
+  <div aria-selected="false"></div>
+  <div aria-selected="false"></div>
 
   <script>
-    const glass1 = document.getElementById('glass-1');
-    const glass2 = document.getElementById('glass-2');
-    const glass3 = document.getElementById('glass-3');
+    const glasses = document.body.querySelectorAll("div");
 
-    glass1.classList.add('coffee');
-    glass2.classList.add('tea');
+    glasses[1].classList.add('coffee');
+    glasses[2].classList.add('tea');
 
     let selectedGlass = null;
 
-    [glass1, glass2, glass3].forEach(glass => {
+    function swapClasses(a, b) {
+      const temp = a.className;
+      a.className = b.className;
+      b.className = temp;
+    }
+
+    glasses.forEach(glass => {
       glass.addEventListener('click', () => {
         if (selectedGlass === glass) {
           selectedGlass.setAttribute('aria-selected', 'false');
@@ -150,12 +154,6 @@
           glass.setAttribute('aria-selected', 'true');
           selectedGlass = glass;
           return;
-        }
-
-        function swapClasses(a, b) {
-          const temp = a.className;
-          a.className = b.className;
-          b.className = temp;
         }
 
         if (glass.classList.length === 0 || selectedGlass.classList.length === 0) {
